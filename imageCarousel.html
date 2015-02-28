@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+        
+        <div id = 'banner'>
+            An Adventurer is You!
+        </div>
+        
+	
+        <div id = 'imagecarousel' >
+            <div class = 'clickable' id = 'left'> < </div>
+            <div class = 'clickable' id = 'right'> > </div>
+            <img class = 'pic' id = 'image'/>
+            <img class = 'pic' id = 'imagel'/>
+            <img class = 'pic' id = 'imager'/>
+            <img class = 'pic' id = 'imageul'/>
+            <img class = 'pic' id = 'imageur'/>    
+        </div>
+        
+		<script src="jquery-2.1.1.js"></script>
+		  
+		<script>		
+            var states = new Array(5);
+            states[0] = 1;
+            states[1] = 2;
+            states[2] = 3;
+            states[3] = 4;
+            states[4] = 0;
+            
+		  $(document).load();
+		  var dataArray=new Array();
+            dataArray[0]="images/1.png";
+            dataArray[1]="images/2.png";
+            dataArray[2]="images/3.png";
+            dataArray[3]="images/4.png";
+            dataArray[4]="images/5.png";
+            dataArray[5]="images/6.png";
+            dataArray[6]="images/7.png";
+            dataArray[7]="images/8.png";
+            dataArray[8]="images/9.png";
+            dataArray[9]="images/10.png";
+            dataArray[10]="images/11.png";
+            dataArray[11]="images/12.png";
+            
+            var thisId=0;
+            var state = 0;
+            
+            var positions = new Array();
+            positions[0] = new Array(2);
+            positions[0][0] = 1050;
+            positions[0][1] = -150;
+            
+            positions[1] = new Array(2);
+            positions[1][0] = 250;
+            positions[1][1] = -150;
+            
+            positions[2] = new Array(2);
+            positions[2][0] = 400;
+            positions[2][1] = 50;
+            
+            positions[3] = new Array(2);
+            positions[3][0] = 650;
+            positions[3][1] = 100;
+            
+            positions[4] = new Array(2);
+            positions[4][0] = 900;
+            positions[4][1] = 50;
+            
+            var movePicsRight = function(){
+                $('#imageul').animate({left: positions[states[0]][0], top: positions[states[0]][1]}, 500);
+                $('#imagel').animate({left: positions[states[1]][0], top: positions[states[1]][1]}, 500);
+                $('#image').animate({left: positions[states[2]][0], top: positions[states[2]][1]}, 500);   
+                $('#imager').animate({left: positions[states[3]][0], top: positions[states[3]][1]}, 500);   
+                $('#imageur').animate({left: positions[states[4]][0], top: positions[states[4]][1]}, 500);
+                
+                for ( var i = 0 ; i < 5; i++){
+                    states[i] = ( states[i] + 1 ) % 5;
+                }
+                
+                if ( $('#image').position().left == 250 ){
+                    thisId = (thisId + 1) % 12;
+                    $('#image').attr('src',dataArray[thisId]);
+                }
+            
+                if ( $('#imageul').position().left == 250 ){
+                    thisId = (thisId + 1) % 12;
+                    $('#imageul').attr('src',dataArray[thisId]);
+                }
+            
+                if ( $('#imagel').position().left == 250 ){
+                    thisId = (thisId + 1) % 12;
+                    $('#imagel').attr('src',dataArray[thisId]);
+                }
+            
+                if ( $('#imager').position().left == 250 ){
+                    thisId = (thisId + 1) % 12;
+                    $('#imager').attr('src',dataArray[thisId]);
+                }
+            
+                if ( $('#imageur').position().left == 250 ){
+                    thisId = (thisId + 1) % 12;
+                    $('#imageur').attr('src',dataArray[thisId]);
+                }
+                
+            };
+            
+            var movePicsLeft = function(){
+                $('#imageul').animate({left: positions[states[0]][0], top: positions[states[0]][1]}, 500);
+                $('#imagel').animate({left: positions[states[1]][0], top: positions[states[1]][1]}, 500);
+                $('#image').animate({left: positions[states[2]][0], top: positions[states[2]][1]}, 500);   
+                $('#imager').animate({left: positions[states[3]][0], top: positions[states[3]][1]}, 500);   
+                $('#imageur').animate({left: positions[states[4]][0], top: positions[states[4]][1]}, 500);
+                
+                for ( var i = 0 ; i < 5; i++){
+                    states[i]--;
+                    if (states[i] < 0)
+                        states[i] = 4;
+                    
+                }
+                
+                if ( $('#image').position().left == 250 ){
+                    thisId = (thisId + 1) % 12;
+                    $('#image').attr('src',dataArray[thisId]);
+                }
+            
+                if ( $('#imageul').position().left == 250 ){
+                    thisId = (thisId + 1) % 12;
+                    $('#imageul').attr('src',dataArray[thisId]);
+                }
+            
+                if ( $('#imagel').position().left == 250 ){
+                    thisId = (thisId + 1) % 12;
+                    $('#imagel').attr('src',dataArray[thisId]);
+                }
+            
+                if ( $('#imager').position().left == 250 ){
+                    thisId = (thisId + 1) % 12;
+                    $('#imager').attr('src',dataArray[thisId]);
+                }
+            
+                if ( $('#imageur').position().left == 250 ){
+                    thisId = (thisId + 1) % 12;
+                    $('#imageur').attr('src',dataArray[thisId]);
+                }
+            };
+            
+        window.setInterval(
+            
+            function(){
+                movePicsRight();
+            },
+            
+            3000);        
+            
+            $('#left').click(function(){
+                movePicsLeft();
+            });
+            $('#right').click(function(){
+                movePicsRight();
+            });
+		</script>
+        
+        
+        <div id = 'randomtext'>
+            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a varius eros, a sagittis urna. Quisque et tincidunt     lectus, id convallis quam. Fusce ac malesuada odio. Fusce rutrum neque a risus lacinia vehicula. Suspendisse et hendrerit ligula. Nunc pharetra risus nec eros venenatis, vel porttitor lacus dictum. Maecenas laoreet eget orci viverra sodales. Nam porttitor quis ligula eu interdum. Quisque quis diam sed dui venenatis ultrices. Donec semper turpis magna, ac congue odio congue nec.
+</p>
+                
+<p> Etiam vitae eros massa. Morbi vitae sem mauris. Proin vel congue velit. Suspendisse molestie fermentum ex et pretium. Phasellus vel hendrerit arcu. Sed condimentum pharetra elit, condimentum finibus arcu interdum sed. Curabitur id arcu id ligula ullamcorper sollicitudin vitae in ante. Nunc et blandit risus. Praesent erat risus, porttitor sed auctor vel, euismod et ligula.
+
+<p> Curabitur consequat luctus viverra. Phasellus at velit erat. Aliquam massa odio, consectetur luctus mattis sed, porta ac nisl. Fusce quam metus, pharetra vel lacus ac, tempus scelerisque neque. Sed vel rutrum mi. Nulla egestas at ligula sed luctus. Ut convallis erat felis, quis lacinia orci ornare accumsan. Integer posuere ullamcorper egestas. Etiam eleifend ac risus vitae gravida. Fusce vitae est ac enim molestie consectetur at ac dui.
+</p>
+    
+<p> Praesent dapibus ultrices augue, eu rhoncus nulla sollicitudin non. Suspendisse et orci at ipsum laoreet dignissim. Praesent quis facilisis tortor, nec dapibus purus. In aliquam enim mi, sit amet fringilla dolor finibus eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a neque justo. Phasellus semper sed velit in dictum. Donec sagittis ultricies magna id ultricies. Suspendisse velit eros, dapibus eu lectus id, tincidunt rutrum ligula. Maecenas iaculis lacinia ultricies. Morbi dapibus lorem ac sapien dignissim commodo. Etiam dignissim justo vitae magna tristique auctor. Nam a lorem et ipsum lacinia venenatis. Proin imperdiet mauris ut diam dignissim condimentum. Praesent ut congue orci. Fusce consequat ligula id libero tempor, quis rhoncus lorem euismod.
+
+<p> Vestibulum nisl diam, ornare eget feugiat quis, vestibulum vel magna. Morbi nec elementum turpis, vulputate semper risus. Nulla ac justo magna. In quis cursus nulla. Aliquam felis sem, varius ut felis eget, porta bibendum sapien. Cras eu suscipit justo, non pellentesque sapien. Phasellus tempor porta dui ut luctus. Aenean rutrum eget diam id porttitor. Nam a blandit nulla, quis semper mauris. Aliquam suscipit ornare ultricies. Aenean auctor arcu magna, vitae pellentesque quam lacinia vitae. Vivamus efficitur vulputate eleifend. Phasellus sed mi blandit, porttitor sapien non, placerat urna. Aenean porta tristique porta. Vestibulum et mauris sed est hendrerit fringilla ut et enim. Integer dui sapien, condimentum gravida neque id, viverra lacinia erat.
+</p>
+    
+<p> Nunc sem magna, mollis eget facilisis semper, suscipit sed sapien. Curabitur aliquet lacus ut odio dignissim, non efficitur velit viverra. Aliquam a lectus sem. Mauris velit purus, accumsan eget felis vitae, semper posuere nisl. Aenean vel varius urna. Nunc faucibus ipsum elit, sed facilisis erat convallis in. Proin sagittis ac turpis sit amet venenatis. Donec non malesuada lacus. Pellentesque viverra viverra dui a cursus. Etiam malesuada cursus lorem, sit amet placerat ipsum congue quis. Praesent commodo, nibh vel convallis scelerisque, augue neque dignissim magna, et vestibulum nibh orci et risus.
+</p>
+    
+<p> Sed purus ante, auctor tristique egestas non, maximus eu justo. Integer vel velit et massa auctor ultrices eu et diam. Sed a urna non est luctus ultrices. Praesent porta ante vitae arcu laoreet, sed condimentum magna pulvinar. Vivamus quis aliquet nibh. Integer vitae mauris a augue pharetra hendrerit in ac purus. In condimentum ligula libero, ac lacinia risus cursus vel. Nullam eget rutrum urna. Cras sit amet fermentum libero.
+</p>
+    
+<p> Quisque convallis eu ligula ut lobortis. Nam aliquam ultricies ante a fringilla. Proin vel vestibulum urna. Ut dictum ligula quis est dapibus, vehicula scelerisque lorem viverra. Nunc in rhoncus est, sit amet tincidunt dui. Aenean venenatis pellentesque ipsum, vitae tristique massa porttitor non. Curabitur in nunc aliquet, sagittis est nec, sodales ante. Ut tristique purus metus, quis posuere ligula accumsan vel.
+</p>
+    
+<p> Cras tempor, turpis ac pellentesque cursus, nulla magna lobortis ex, quis condimentum ipsum sem ac quam. Nam feugiat convallis augue nec fermentum. Ut accumsan fringilla volutpat. Donec consequat mauris ut sodales blandit. Praesent sollicitudin urna vel mauris finibus, quis faucibus orci mattis. Nunc sollicitudin ipsum nec tortor lobortis, suscipit faucibus enim suscipit. Etiam quis elit sapien. 
+</p>
+    
+<p> Mauris at ornare sem. Pellentesque ac aliquet neque, ut tempor velit. Maecenas ac iaculis neque. Vivamus id tortor velit. Integer ullamcorper felis in odio lacinia, quis imperdiet quam scelerisque. Pellentesque felis neque, varius quis sollicitudin sit amet, posuere ac est. Morbi porttitor arcu sed sem volutpat, imperdiet egestas odio semper. Quisque mi massa, ornare eget malesuada eget, condimentum in odio. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec consectetur ornare metus, a dapibus ipsum imperdiet in. Maecenas varius dui at leo vulputate, eget finibus sapien volutpat. Maecenas vel risus volutpat lorem dapibus egestas.
+            </p>
+            
+        </div>
+        
+		<div id = 'footer'>
+            Kingdom of Loathing 5ever.
+        </div>
+        
+	</body>
+</html>
